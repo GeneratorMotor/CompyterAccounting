@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
+using CompyterAccounting.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +22,14 @@ namespace CompyterAccounting
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // получаем строку подключения из файла конфигурации
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+
+            // Подключим к IoC сервис DataContext.
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+
             services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,8 +46,10 @@ namespace CompyterAccounting
 
             app.UseStaticFiles();
 
+            // Сервис маршрутизации.
             app.UseRouting();
 
+            // Сервис авторизации.
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

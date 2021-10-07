@@ -1,0 +1,31 @@
+﻿@page
+@model CompyterAccounting.Pages.ReferencesModel
+@{
+    ViewData["Title"] = "Страница сапрвочники";
+}
+
+<h1>Модели UPS</h1>
+<p/>
+<table border="1">
+    <thead>
+    <td align="center">Id</td>
+    <td align="center">Модель UPS</td>
+    </thead>
+    @foreach (var itm in Model.listModelsUps)
+    {
+        <tr>
+            <td align="left">@itm.id_modelUps</td>
+            <td align="left">@itm.Model</td>
+            <td>
+                <form method="post">
+                    <a asp-page="/PagesModelUps/EditModelUps" asp-route-id="itm.id_modelUp">Изменить</a>
+                    <button type="submit" asp-page-handler="delete" asp-route-id="itm.id_modelUp">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<p/>
+<a asp-page="/PagesModelUps/AddPagesModel">Добавить модель UPS</a>
