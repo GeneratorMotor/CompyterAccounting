@@ -44,9 +44,9 @@ namespace CompyterAccounting.Pages
             }
         }
 
-        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        public async Task<IActionResult> OnPostDeleteAsync(int id_modelUps)
         {
-            var model = await dc.ModelUps.FindAsync(id);
+            var model = await dc.ModelUps.FindAsync(id_modelUps);
             //var model = await dc.ModelUps.FindAsync(100);
 
             if (model != null)

@@ -17,9 +17,11 @@
             <td align="left">@itm.id_modelUps</td>
             <td align="left">@itm.Model</td>
             <td>
+                <!--<form method="post">-->
+                @*<a asp-page="/PagesModelUps/EditModelUps" asp-route-id="@itm.id_modelUps">Изменить</a>*@
                 <form method="post">
-                    <a asp-page="/PagesModelUps/EditModelUps" asp-route-id="itm.id_modelUp">Изменить</a>
-                    <button type="submit" asp-page-handler="delete" asp-route-id="itm.id_modelUp">
+                    <a asp-page="/PagesModelUps/EditPagesModel" asp-route-id_modelUps="@itm.id_modelUps">Изменить</a>
+                    <button type="submit" asp-page-handler="delete" asp-route-id_modelUps="@itm.id_modelUps">
                         Удалить
                     </button>
                 </form>
